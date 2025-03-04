@@ -1,5 +1,11 @@
 #include "functions.h"
 
+// Wi-Fi
+const char* ssid = "Ardtest";
+const char* pass = "39819477";
+const char* host = "testweb1-y5nj.onrender.com";
+const int port = 443;
+
 WiFiManager wifiManager(ssid, pass, host, port);
 WiFiClientSecure wifiClient;
 HttpClient client = HttpClient(wifiClient, host, port);

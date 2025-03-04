@@ -1,22 +1,8 @@
 #include "functions.h"
 
-// -----------------------------------------
-// Wi‑Fi 정보
-// -----------------------------------------
-const char* ssid = "Ardtest";
-const char* pass = "39819477";
-const char* host = "testweb1-y5nj.onrender.com";
-const int port = 443;  
-
 WiFiManager wifiManager(ssid, pass, host, port);
 WiFiClientSecure wifiClient;
 HttpClient client = HttpClient(wifiClient, host, port);
-
-// -----------------------------------------
-// EmStat Pico (MethodSCRIPT) 관련 설정
-// -----------------------------------------
-const int RX_PIN = 6;   // EmStat Pico RX (TX -> 6)
-const int TX_PIN = 5;   // EmStat Pico TX (RX -> 5)
 
 String serial1Buffer;   // Serial1 수신 누적 버퍼
 
@@ -24,10 +10,7 @@ void setup() {
   Serial.begin(115200);
   Serial1.begin(230400, SERIAL_8N1, RX_PIN, TX_PIN);
 
-  // -----------------------------------------
-  // Wi‑Fi 초기화
-  // -----------------------------------------
-  wifiManager.begin();
+  wifiManager.begin(); // Wi-Fi 연결 시작작
 
   wifiClient.setInsecure();  // DEMO
 
@@ -43,9 +26,8 @@ unsigned long lastDataTime = 0;
 const unsigned long DATA_TIMEOUT = 3000; // 3초
 
 void loop() {
-  // 현재 시간
   unsigned long currentTime = millis();
-    
+
   // 일정 시간 동안 새 데이터가 없으면 누적 버퍼 처리
   if (accumulatedData.length() > 0 && (currentTime - lastDataTime > DATA_TIMEOUT)) {
     Serial.println("[INFO] 데이터 타임아웃. 누적된 데이터 처리 중...");

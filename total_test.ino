@@ -82,7 +82,7 @@ void loop() {
         // 데이터 전송 후, 다음 측정을 위해 상태 초기화
         measurementDone = false;
         measurementStarted = false;
-        // 측정 루프 돌릴 떄 옵션션
+        // 측정 루프 돌릴 떄 옵션
         // sendEISMeasurementScript();
         // measurementStarted = true;
     }

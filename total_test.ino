@@ -11,10 +11,9 @@ void setup() {
   Serial1.begin(230400, SERIAL_8N1, RX_PIN, TX_PIN);
 
   wifiManager.begin(); // Wi-Fi 연결 시작작
+  wifiClient.setInsecure();  // OPTION : DEMO 
 
-  wifiClient.setInsecure();  // DEMO
-
-  // 최초 측정 스크립트 전송 (한 번만)
+  // 최초 측정 스크립트 전송
   if (!measurementStarted) {
     sendEISMeasurementScript();
     measurementStarted = true;
@@ -23,7 +22,7 @@ void setup() {
 
 String accumulatedData = "";
 unsigned long lastDataTime = 0;
-const unsigned long DATA_TIMEOUT = 3000; // 3초
+const unsigned long DATA_TIMEOUT = 10000; // 10초
 
 void loop() {
   unsigned long currentTime = millis();
@@ -80,10 +79,10 @@ void loop() {
 
     // 측정이 완료되면 (measurementDone == true) 서버에 데이터 전송
     if (measurementDone) {
-        // 데이터 전송 후, 다음 측정을 위해 상태 초기화 (필요에 따라 스크립트 재전송)
+        // 데이터 전송 후, 다음 측정을 위해 상태 초기화
         measurementDone = false;
         measurementStarted = false;
-        // 새 측정을 원한다면 아래와 같이 스크립트를 다시 전송할 수 있음:
+        // 측정 루프 돌릴 떄 옵션션
         // sendEISMeasurementScript();
         // measurementStarted = true;
     }

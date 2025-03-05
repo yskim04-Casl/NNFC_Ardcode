@@ -69,9 +69,10 @@ void loop() {
           Serial.println("json 파일 전송됨");
         }
         wifiClient.flush();
-
-        String res = "";
-        delay(100);
+        //디버그 필요
+        delay(100); // 딜레이 도중 EmStat Pico 모듈에게서 데이터를 받으면 버퍼에 들어가지 않고 유실되는 문제 추정됨.
+        // request 요청 후 딜레이가 없다면 response를 받지 못함 => 해결 필요
+        //
         while (wifiClient.available()) {
           char ch = wifiClient.read();
           res += ch;

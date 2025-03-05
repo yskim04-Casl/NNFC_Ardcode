@@ -13,6 +13,9 @@ float measuredFreq = 0.0;
 float measuredZr   = 0.0;
 float measuredZi   = 0.0;
 
+// HTTP
+String res = "";
+
 // Wi-Fi
 const char* ssid = "Ardtest";
 const char* pass = "39819477";

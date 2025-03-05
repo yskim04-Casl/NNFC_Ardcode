@@ -17,6 +17,9 @@ extern bool freqUpdated;
 extern bool zrUpdated;
 extern bool ziUpdated;
 
+// HTTP
+extern String res;
+
 // Wi‑Fi 정보
 extern const char* ssid;
 extern const char* pass;

@@ -82,6 +82,7 @@ void loop() {
 
         // 데이터 플래그 초기화
         resetDataFlags();
+        delay(1500); // 1.5초 대기
         }
       }
     }

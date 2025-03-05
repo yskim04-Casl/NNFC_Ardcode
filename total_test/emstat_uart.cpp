@@ -36,7 +36,7 @@ void parseMethodScriptLine(String line) {
     // 측정 완료(*) 감지
     if (line == "*") {
         measurementDone = true;
-        Serial.println("[INFO] 측정 완료 ('*' 수신).");
+        Serial.println("[!] 측정 완료 ('*' 수신).");
         return;
     }
 

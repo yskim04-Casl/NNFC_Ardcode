@@ -10,7 +10,7 @@ void setup() {
   Serial.begin(115200);
   Serial1.begin(230400, SERIAL_8N1, RX_PIN, TX_PIN);
 
-  wifiManager.begin(); // Wi-Fi 연결 시작작
+  wifiManager.begin(); // Wi-Fi 연결 시작
   wifiClient.setInsecure();  // DEMO
 
   // 최초 측정 스크립트 전송 (한 번만)
@@ -62,8 +62,7 @@ void loop() {
         bool connected = wifiClient.connect(host, port);
         if (!connected) {
           Serial.println("[!] SSL 연결 실패!");
-          delay(1500);
-          return;
+          continue;
         } else {
           String request = wifiManager.requestbody_json(jsonBody);
           wifiClient.write((const uint8_t*)request.c_str(), request.length());
@@ -82,7 +81,6 @@ void loop() {
 
         // 데이터 플래그 초기화
         resetDataFlags();
-        delay(1500);
         }
       }
     }
